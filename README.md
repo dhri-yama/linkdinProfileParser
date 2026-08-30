@@ -53,7 +53,20 @@ Interactive docs (Swagger UI): `https://<service>.onrender.com/docs`
 ## Local development
 
 ```bash
+# 1. Create and activate a virtual environment (first time)
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 2. Install dependencies
 pip install -r requirements.txt
-cp .env.example .env   # fill in your values
+
+# 3. Create your env config and fill in your values
+cp .env.example .env
+
+# 4. Run the server (must use the venv's uvicorn)
 uvicorn app.main:app --reload
 ```
+
+If `uvicorn` is not found, make sure the venv is activated (you should see `(.venv)` in your prompt) or run it directly: `.venv/bin/uvicorn app.main:app --reload`.
+
+The server starts at `http://127.0.0.1:8000`. Interactive docs: `http://127.0.0.1:8000/docs`.
