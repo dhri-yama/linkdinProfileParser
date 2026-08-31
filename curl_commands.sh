@@ -36,7 +36,21 @@ curl -s "$BASE/api/profile?username=$PROFILE_URL" \
 
 
 # -----------------------------------------------------------------------------
-# 4) Pretty-print with a tool (e.g. jq, if installed)
+# 4) Get a profile using caller-supplied LinkedIn cookies (API key required)
+#    Uses li_at + jsessionid instead of the server .env session.
+# -----------------------------------------------------------------------------
+LI_AT="your-li-at-cookie"
+JSESSIONID="ajax:your-jsessionid"
+
+curl -s -G "$BASE/api/profile/with-cookies" \
+     --data-urlencode "username=$USERNAME" \
+     --data-urlencode "li_at=$LI_AT" \
+     --data-urlencode "jsessionid=$JSESSIONID" \
+     -H "X-API-Key: $API_KEY" | python3 -m json.tool
+
+
+# -----------------------------------------------------------------------------
+# 5) Pretty-print with a tool (e.g. jq, if installed)
 # -----------------------------------------------------------------------------
 curl -s "$BASE/api/profile?username=$USERNAME" \
      -H "X-API-Key: $API_KEY" | jq .

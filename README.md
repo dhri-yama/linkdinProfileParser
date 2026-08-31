@@ -20,6 +20,15 @@ curl -H "X-API-Key: <your-api-key>" \
      "https://<service>.onrender.com/api/profile?username=satyanadella"
 ```
 
+### `GET /api/profile/with-cookies?username=<username>&li_at=<li_at>&jsessionid=<jsessionid>`
+Same as `/api/profile`, but authenticates to LinkedIn with the cookies you pass
+instead of `LI_AT` / `JSESSIONID` from the server environment. **Requires an API key.**
+
+```
+curl -H "X-API-Key: <your-api-key>" \
+     "https://<service>.onrender.com/api/profile/with-cookies?username=satyanadella&li_at=<li_at>&jsessionid=<jsessionid>"
+```
+
 Interactive docs (Swagger UI): `https://<service>.onrender.com/docs`
 
 ## Deploying on Render
